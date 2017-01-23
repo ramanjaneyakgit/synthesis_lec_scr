@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/repos/!svn/ver/129/SYNTIM/SYNTHESIS/RC_RC-PHYSICAL/SCRIPTS
+END
+read_rtlfiles.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/repos/!svn/ver/129/SYNTIM/SYNTHESIS/RC_RC-PHYSICAL/SCRIPTS/read_rtlfiles.tcl
+END
+attributes_physical.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/!svn/ver/129/SYNTIM/SYNTHESIS/RC_RC-PHYSICAL/SCRIPTS/attributes_physical.tcl
+END
+attributes.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/repos/!svn/ver/129/SYNTIM/SYNTHESIS/RC_RC-PHYSICAL/SCRIPTS/attributes.tcl
+END
+report_generation.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/repos/!svn/ver/129/SYNTIM/SYNTHESIS/RC_RC-PHYSICAL/SCRIPTS/report_generation.tcl
+END
+create_directory.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/repos/!svn/ver/129/SYNTIM/SYNTHESIS/RC_RC-PHYSICAL/SCRIPTS/create_directory.tcl
+END
+synthesize.rctcl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/!svn/ver/129/SYNTIM/SYNTHESIS/RC_RC-PHYSICAL/SCRIPTS/synthesize.rctcl
+END
+common_library_setup.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/repos/!svn/ver/129/SYNTIM/SYNTHESIS/RC_RC-PHYSICAL/SCRIPTS/common_library_setup.tcl
+END
+path_group_creation.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/!svn/ver/129/SYNTIM/SYNTHESIS/RC_RC-PHYSICAL/SCRIPTS/path_group_creation.tcl
+END
+rc_variables.tcl
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/repos/!svn/ver/129/SYNTIM/SYNTHESIS/RC_RC-PHYSICAL/SCRIPTS/rc_variables.tcl
+END

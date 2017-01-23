@@ -1,0 +1,72 @@
+# --------------------------------------------
+# File : Library setup file for synthesis 
+# --------------------------------------------
+
+set search_path ""
+
+set timing_libs ""		;# All Libraries are defined here
+set power_libs ""		;# Only fast device corner libraries are defined here for leakage optimization
+
+set_attr lib_search_path [list . \
+	\
+	/india/proj_eldorado/eldorado/IP/IP_FILES/std_cells/9-Track/release_16Jan2014/C30/rvt/base_library/ccs_library_0.85V/arm/gf/cmos28hpp/sc9mc_base_rvt_c30/r5p0/lib-ccs-tn/ \
+	/india/proj_eldorado/eldorado/IP/IP_FILES/std_cells/9-Track/release_16Jan2014/C30/lvt/base_library/ccs_library_0.85V/arm/gf/cmos28hpp/sc9mc_base_lvt_c30/r0p0/lib-ccs-tn/ \
+	/india/proj_eldorado/eldorado/IP/IP_FILES/std_cells/9-Track/release_16Jan2014/C30/hvt/base_library/ccs_library_0.85V/arm/gf/cmos28hpp/sc9mc_base_hvt_c30/r4p0/lib-ccs-tn/ \
+	\
+	/india/proj_eldorado/eldorado/IP/IP_FILES/std_cells/9-Track/release_16Jan2014/C34/lvt/base_library/ccs_library_0.85V/arm/gf/cmos28hpp/sc9mc_base_lvt_c34/r0p0/lib-ccs-tn/ \
+	/india/proj_eldorado/eldorado/IP/IP_FILES/std_cells/9-Track/release_16Jan2014/C34/hvt/base_library/ccs_library_0.85V/arm/gf/cmos28hpp/sc9mc_base_hvt_c34/r3p0/lib-ccs-tn/ \
+	/india/proj_eldorado/eldorado/IP/IP_FILES/std_cells/9-Track/release_16Jan2014/C34/rvt/base_library/ccs_library_0.85V/arm/gf/cmos28hpp/sc9mc_base_rvt_c34/r4p0/lib-ccs-tn/]
+
+# -----------------------------
+# Define Timing Libraries
+# -----------------------------
+
+set timing_libs "[list 	sc9mc_cmos28hpp_base_rvt_c30_ss_nominal_max_0p765v_m40c.lib_ccs_tn \
+			sc9mc_cmos28hpp_base_hvt_c30_ss_nominal_max_0p765v_m40c.lib_ccs_tn \
+			sc9mc_cmos28hpp_base_lvt_c30_ss_nominal_max_0p765v_m40c.lib_ccs_tn \
+			\
+			sc9mc_cmos28hpp_base_rvt_c34_ss_nominal_max_0p765v_m40c.lib_ccs_tn \
+			sc9mc_cmos28hpp_base_lvt_c34_ss_nominal_max_0p765v_m40c.lib_ccs_tn \
+			sc9mc_cmos28hpp_base_hvt_c34_ss_nominal_max_0p765v_m40c.lib_ccs_tn]"
+
+# -----------------------------
+# Define Power Libraries
+# -----------------------------
+
+set power_libs "[list   sc9mc_cmos28hpp_base_rvt_c30_ff_nominal_min_0p935v_125c.lib_ccs_tn \
+                        sc9mc_cmos28hpp_base_lvt_c30_ff_nominal_min_0p935v_125c.lib_ccs_tn \
+                        sc9mc_cmos28hpp_base_hvt_c30_ff_nominal_min_0p935v_125c.lib_ccs_tn \
+                        \
+                        sc9mc_cmos28hpp_base_lvt_c34_ff_nominal_min_0p935v_125c.lib_ccs_tn \
+                        sc9mc_cmos28hpp_base_hvt_c34_ff_nominal_min_0p935v_125c.lib_ccs_tn \
+                        sc9mc_cmos28hpp_base_rvt_c34_ff_nominal_min_0p935v_125c.lib_ccs_tn]"
+
+# ------------------------------------------
+# Creating Timing & Power Library Domains
+# ------------------------------------------
+
+create_library_domain {TIMING POWER}
+
+set_attribute library $timing_libs [find /libraries -library_domain TIMING]
+set_attribute library $power_libs  [find /libraries -library_domain POWER]
+
+set_attribute power_library [find /libraries -library_domain POWER] [find /libraries -library_domain TIMING]
+set_attribute default true [find /libraries -library_domain TIMING]
+
+# ---------------------------------------------
+
+# ------------------------------------------------------------------
+# If you are using .libs for any blocks, use the below settings
+
+#if {$BLOCK2SYNTH == "eld_top" } {
+#	set Block_libs [list /india/proj_eldorado/eldorado/Explore/Synth/PASS9_RTL_01FEB14_SOC_ELD_TOP/HASH_CORE_RTL_31JAN14_SS_0C.lib]
+#
+#	foreach my_Block_libs $Block_libs {
+#	  lappend timing_libs $my_Block_libs
+#	 }
+#
+#}
+# ------------------------------------------------------------------
+
+
+

@@ -1,0 +1,24 @@
+
+##################################
+# DIRECTORY STRUCTURE CREATION
+##################################
+
+if { [file isdirectory ./${DESIGN} ] } {
+        echo "Directory ./${DESIGN} exists"
+} else {
+        shell mkdir ./${DESIGN}
+}
+
+if { [file isdirectory ./${DESIGN}/OUTPUTS ] } {
+        echo "Directory ./${DESIGN}/OUTPUTS exists"
+} else {
+        shell mkdir ./${DESIGN}/OUTPUTS
+}
+if { [file isdirectory ./${DESIGN}/REPORTS ] } {
+        echo "Directory ./${DESIGN}/REPORTS exists" 
+} else { 
+        shell mkdir ./${DESIGN}/REPORTS
+}
+
+##################################
+

@@ -1,0 +1,64 @@
+####################################################################
+# Script To Insert Isolation Cells in the Netlist
+####################################################################
+echo "OS_INFO: Time(Start): [date]"
+echo "OS_INFO: Sourcing Root-Level attributes"
+
+set WORK_AREA [lpwd]
+set RC_COMMON_INPUTS ${WORK_AREA}/INPUTS
+set RC_COMMON_PLUGS ${WORK_AREA}/PLUGS
+set OUTPUTS_PATH ${WORK_AREA}/${DESIGN}/OUTPUTS
+set REPORTS_PATH ${WORK_AREA}/${DESIGN}/REPORTS
+set EDI_COMMON_SCRIPTS ${WORK_AREA}/EDI_SCRIPTS
+
+source -v ${RC_COMMON_INPUTS}/user_attr_file.tcl
+source -v ${RC_COMMON_SCRIPTS}/values_attributes_variables_physical.tcl
+source  -v ${RC_COMMON_SCRIPTS}/attributes.tcl
+
+if { [file isdirectory ./Isolation_Inserted_Netlist ] } {
+        echo "Directory ./Isolation_Inserted_Netlist exists"
+} else {
+        shell mkdir ./Isolation_Inserted_Netlist
+}
+
+echo "OS_INFO: Hostname : [info hostname]"
+
+
+#================================
+#Reading Libraries
+#================================
+echo "OS_INFO: Reading Libraries"
+source ${COMMON_LIB_SETUP}
+library_setup ${DEVICE_CORNER}
+if { [llength $LIB_OF_SUBBLOCKS] != 0 } {
+        lappend all_libs ${LIB_OF_SUBBLOCKS}
+}
+
+set_attribute library $all_libs
+
+check_library
+
+global timing_libs
+
+# ---------------------
+# Don't Use Cell List
+
+echo "OS_INFO: Sourcing Dont Use list"
+source ${DONT_USE_CELL_FILE}
+
+timestat RC_SETUP_DONE
+
+#================================
+# DESIGN ELABORATION
+#================================
+echo "OS_INFO: Reading RTL files and Elaborations"
+
+read_hdl -netlist $NETLIST($DESIGN)
+elaborate $DESIGN
+
+read_cpf $CPF($DESIGN)
+commit_cpf -isolation_cell_only
+
+write_hdl > ./Isolation_Inserted_Netlist/${DESIGN}_Iso.v 
+
+exit
